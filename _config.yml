@@ -1,7 +1,163 @@
-name: Jony Vesterman Cohen, HPE
-markdown: kramdown
-permalink: /blog/:year/:month/:day/:title
+
+# Site settings
+
+# NB! Set your site's url, otherwise stuff will break :)
+
+url: "https://cohenjo.github.io"
+
+# If you're hosting your site at a Project repository on GitHub pages
+# (https://yourusername.github.io/repository-name)
+# and NOT your user repository (https://yourusername.github.io)
+# then add in the baseurl here, like this: "/repository-name"
+#
+# NB! Without this *nothing* will work, because it's used in every path :)
+
+# baseurl: /personal-jekyll-theme
+
+# Google tracking id to track your visitors
+
+google-tracking-id: "UA-35880426-4"
+
+# Forces https everywhere in your website, except when you serve it locally
+# If you are not hosted on Github Pages, and your host doesn't support https
+# then you should disable it
+
+force-https: True
+
+syntax-highlight: True
+
+# Sections shown in the index page
+
+pages_list:
+  About: 'about'
+  Blog: 'latest-post'
+  Timeline: 'timeline'
+  Contact: 'contact'
+
+web-app-mode: True
+
+# Icons for Web App mode
+
+icon-36p: "/img/web-app/icon-36p.png"
+icon-48p: "/img/web-app/icon-48p.png"
+icon-72p: "/img/web-app/icon-72p.png"
+icon-96p: "/img/web-app/icon-96p.png"
+icon-144p: "/img/web-app/icon-144p.png"
+icon-192p: "/img/web-app/icon-192p.png"
+
+#############
+# HTML Head #
+#############
+
+author: "Jony Vesterman Cohen"
+lang: "en"
+title: "{ Cohenjo }"
+favicon: "/img/favicon.ico"
+description: "Blog and website of Jony Vesterman Cohen, blogging mainly for Databases. Opinions expressed are mine."
+keywords: "Jony, Vesterman, Cohen, personal, database, postgres, jekyll, theme"
+
+################
+# Header layout #
+################
+
+black-favicon: "/img/black-lab-glass.ico"
+background-img: "../img/intro-bg.jpg"
+me-img: "/img/jetpacktocat.png"
+
+##############################
+# Dynamic Text on the Header #
+##############################
+
+dynamic-typing: True
+shuffle: True # Shuffle the lines.
+loop: True
+loop-count: False # Set False for infinite loop, or set any number for finite loop.
+type-speed: 10
+start-delay: 200
+delete-delay: 5000
+lines: # You can add HTML Tags in the Text
+  - text: "The lower you fall, the higher you'll fly."
+  - text: "Where’s your will to be weird?"
+
+########
+# Blog #
+########
+
+post-preview-words: 96
+
+paginate: 5
+
+fb-share: True
+twitter-share: True
+reddit-share: True
+google-plus-share: True
+linkedin-share: True
+pinterest-share: True
+vkontakte-share: True
+disqus-shortname: "panossakkos"
+
+###############
+# Life Events #
+###############
+
+events:
+  - image: "/img/timeline/spidertocat.png"
+    date: "September 2013 - Today"
+    description: "Saving the neighborhood!"
+  - image: "/img/timeline/baracktocat.jpg"
+    date: "September 2007 - August 2013"
+    description: "Started coding"
+
+# First image of the Timeline
+
+timeline-img: "/img/timeline/default.png"
+
+##################
+# Contact layout #
+##################
+
+email: "jony.cohenjo@gmail.com"
+
+##################
+# Social Buttons #
+##################
+
+social:
+#  - title: "facebook"
+#    url: "https://facebook.com/"
+  - title: "twitter"
+    url: "https://twitter.com/"
+  - title: "github"
+    url: "https://cohenjo.github.com/"
+#  - title: "bitcoin"
+#    url: "https://blockchain.info/address/1LHuKC9Em3KA5yoZaf7nngnNdf9K7s2gSi"
+  - title: "rss"
+    url: "/feed.xml"
+
+############
+# 404 page #
+############
+
+404-img: "/img/labtocat.png"
+
+################################################################################
+
+# NB! Tread carefully if you want to change the variables below this point!
+
+# Exclusion list from the generated _site
+
+exclude: ["LICENSE", "README", "CONTRIBUTING", "CONTRIBUTORS", "scripts"]
+
+# Pagination path
+
+paginate_path: "blog/page:num/"
+
+# Enable minification SASS
+
+sass:
+  style: compressed
 
 gems:
   - jekyll-sitemap
-  
+  - jekyll-paginate
+  - jemoji
