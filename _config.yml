@@ -78,6 +78,7 @@ delete-delay: 5000
 lines: # You can add HTML Tags in the Text
   - text: "The lower you fall, the higher you'll fly."
   - text: "Where’s your will to be weird?"
+  - text: "we're all mad here. I'm mad. You're mad."
 
 ########
 # Blog #
@@ -104,6 +105,12 @@ events:
   - image: "/img/timeline/spidertocat.png"
     date: "September 2013 - Today"
     description: "Saving the neighborhood!"
+  - image: "/img/timeline/Family-2nd.JPG"
+    date: "July 2015"
+    description: "Became a Dad for the 2nd time!"
+  - image: "/img/timeline/Family.JPG"
+    date: "July 2012"
+    description: "Became a Dad!"
   - image: "/img/timeline/baracktocat.jpg"
     date: "September 2007 - August 2013"
     description: "Started coding"
