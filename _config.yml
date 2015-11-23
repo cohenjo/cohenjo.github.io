@@ -155,7 +155,7 @@ social:
 
 # Exclusion list from the generated _site
 
-exclude: ["LICENSE", "README", "CONTRIBUTING", "CONTRIBUTORS", "scripts"]
+exclude: ["LICENSE", "README", "CONTRIBUTING", "CONTRIBUTORS", "scripts", vendor]
 
 # Pagination path
 
