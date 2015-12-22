@@ -17,7 +17,7 @@ It turns out PostgreSQL can use the same optimization to prune tables which are 
 
 Consider the following schema:
 
-```
+{% highlight sql linenos %}
 Table "public.t<n>"
 Column |  Type   | Modifiers
 --------+---------+-----------
@@ -26,7 +26,7 @@ c      | text    |
 v      | integer |
 Check constraints:
 "t<n>_v_check" CHECK (v = <n>)
-```
+{% endhighlight %}
 for `n = 1:3`.
 
 The following query:
