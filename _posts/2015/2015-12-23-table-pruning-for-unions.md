@@ -17,7 +17,7 @@ It turns out PostgreSQL can use the same optimization to prune tables which are 
 
 Consider the following schema:
 
-```sql
+<pre><code data-trim class="sql">
 Table "public.t<n>"
 Column |  Type   | Modifiers
 --------+---------+-----------
@@ -26,14 +26,16 @@ c      | text    |
 v      | integer |
 Check constraints:
 "t<n>_v_check" CHECK (v = <n>)
-```
+</code></pre>
+
 for `n = 1:3`.
 
 The following query:
 `SELECT count(*) from (select * from t1 union all select * from t2 union all select * from t3) foo where foo.v=1; `
 
 will be executed only on the first partition (i.e. `t1`)
-```
+
+<pre><code data-trim class="sql">
 postgres=# explain select count(*) from (select * from t1 union all select * from t2 union all select * from t3) foo where foo.v=1;
                                QUERY PLAN                               
 ------------------------------------------------------------------------
@@ -42,10 +44,11 @@ postgres=# explain select count(*) from (select * from t1 union all select * fro
          ->  Seq Scan on t1  (cost=0.00..21846.00 rows=1000000 width=0)
                Filter: (v = 1)
 (4 rows)
-```
+</code></pre>
 
 Compare this with the same query only this time without the `CHECK` constrains:
-```
+
+<pre><code data-trim class="sql">
 postgres=# explain select count(*) from (select * from t1 union all select * from t2 union all select * from t3) foo where foo.v=1;
                                QUERY PLAN                               
 ------------------------------------------------------------------------
@@ -58,7 +61,7 @@ postgres=# explain select count(*) from (select * from t1 union all select * fro
          ->  Seq Scan on t3  (cost=0.00..21846.00 rows=1 width=0)
                Filter: (v = 1)
 (8 rows)
-```
+</code></pre>
 
 At this point you're probably wondering _why not simply use partitions?_
 well, one reason is to avoid the locks that are required for partition maintenance.
@@ -75,7 +78,8 @@ create a table for each month, drop tables which are no longer useful.
 upon query simply `UNION ALL` all the relevant tables and let PG prune for you :)
 
 For example:
-```
+
+<pre><code data-trim class="sql">
 explain select count(*)
 from
 (select * from t1
@@ -103,10 +107,11 @@ union all
 select * from t12
 ) foo
 where foo.v in (12, 11, 10);
-```
+</code></pre>
 
 And PG runs:
-```
+
+<pre><code data-trim class="sql">
 QUERY PLAN                                
 -------------------------------------------------------------------------
 Aggregate  (cost=76788.00..76788.01 rows=1 width=0)
@@ -117,10 +122,11 @@ Filter: (v = ANY ('{12,11,10}'::integer[]))
 Filter: (v = ANY ('{12,11,10}'::integer[]))
 ->  Seq Scan on t12  (cost=0.00..23096.00 rows=1000000 width=0)
 Filter: (v = ANY ('{12,11,10}'::integer[]))
-```
+</code></pre>
 
 It even works for conditions such as `where foo.v > 10;`
-```
+
+<pre><code data-trim class="sql">
 QUERY PLAN                                
 -------------------------------------------------------------------------
 Aggregate  (cost=48692.00..48692.01 rows=1 width=0)
@@ -129,7 +135,7 @@ Aggregate  (cost=48692.00..48692.01 rows=1 width=0)
 Filter: (v > 10)
 ->  Seq Scan on t12  (cost=0.00..21846.00 rows=1000000 width=0)
 Filter: (v > 10)
-```
+</code></pre>
 
 ### Conclusion
 Partition pruning is a powerful optimization tool but it is not limited to partitions.
