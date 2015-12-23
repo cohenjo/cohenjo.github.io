@@ -18,14 +18,14 @@ It turns out PostgreSQL can use the same optimization to prune tables which are 
 Consider the following schema:
 
 <pre><code data-trim class="sql">
-Table "public.t<n>"
+Table "public.tn"
 Column |  Type   | Modifiers
 --------+---------+-----------
 id     | integer |
 c      | text    |
 v      | integer |
 Check constraints:
-"t<n>_v_check" CHECK (v = <n>)
+"tn_v_check" CHECK (v = n)
 </code></pre>
 
 for `n = 1:3`.
