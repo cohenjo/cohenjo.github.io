@@ -170,3 +170,5 @@ gems:
   - jekyll-sitemap
   - jekyll-paginate
   - jemoji
+
+theme: jekyll-theme-architect
